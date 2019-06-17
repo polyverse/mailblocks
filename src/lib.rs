@@ -1,4 +1,5 @@
 mod utils;
+pub mod crypto;
 
 use wasm_bindgen::prelude::*;
 
@@ -15,5 +16,15 @@ extern {
 
 #[wasm_bindgen]
 pub fn greet() {
-    alert("Hello, mailblocks!");
+    let hash = hash_message();
+    let preamble = "Hashed msg: ";
+    let message = format!("{}{}", preamble, hash);
+    alert(&message);
+}
+
+#[wasm_bindgen]
+pub fn hash_message() -> String{
+    let email = String::from("Email stand in string");
+    let hash = crypto::encrypt(&email);
+    hash
 }
