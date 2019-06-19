@@ -8,3 +8,9 @@ pub fn set_panic_hook() {
     #[cfg(feature = "console_error_panic_hook")]
     console_error_panic_hook::set_once();
 }
+
+use std::fs;
+pub fn read_file(path: &str) -> String {
+    let data = fs::read_to_string(path).expect("Unable to read file");
+    data
+}
