@@ -27,7 +27,7 @@ struct Mailblock {
 }
 
 #[wasm_bindgen]
-pub fn forge_mailblock(message: &str, index: i32, total: i32) -> JsValue {
+pub fn generate_mailblock(message: &str, index: i32, total: i32) -> JsValue {
     let hash = crypto::encrypt(message);
     let mailblock = Mailblock {
         header: Header {
