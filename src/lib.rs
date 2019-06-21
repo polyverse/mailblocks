@@ -1,5 +1,5 @@
-pub mod utils;
 pub mod crypto;
+pub mod utils;
 
 use wasm_bindgen::prelude::*;
 
@@ -16,14 +16,14 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[derive(Serialize)]
 struct Header {
     title: String,
-    version: String
+    version: String,
 }
 #[derive(Serialize)]
 struct Mailblock {
     header: Header,
     index: i32,
     total: i32,
-    hash: String
+    hash: String,
 }
 
 #[wasm_bindgen]
@@ -32,14 +32,14 @@ pub fn forge_mailblock(message: &str, index: i32, total: i32) -> JsValue {
     let mailblock = Mailblock {
         header: Header {
             title: String::from("mailblock"),
-            version: String::from("1.0")
+            version: String::from("1.0"),
         },
         index: index,
         total: total,
-        hash: hash
+        hash: hash,
     };
     match JsValue::from_serde(&mailblock) {
         Ok(json) => json,
-        Err(_) => JsValue::NULL
+        Err(_) => JsValue::NULL,
     }
 }
