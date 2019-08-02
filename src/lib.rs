@@ -28,7 +28,12 @@ struct Mailblock {
 
 #[wasm_bindgen]
 pub fn generate_mailblock(message: &str, stamp: String, recipient: String) -> JsValue {
-    let hash = crypto::encrypt(message);
+    let magic = String::from("init-magic");
+    let hash;
+    match message == magic {
+        true => hash = magic, 
+        _ => hash = crypto::encrypt(message)
+    }
     let mailblock = Mailblock {
         header: Header {
             title: String::from("mailblock"),
