@@ -21,21 +21,21 @@ struct Header {
 #[derive(Serialize)]
 struct Mailblock {
     header: Header,
-    index: i32,
-    total: i32,
+    stamp: String,
+    recipient: String,
     hash: String,
 }
 
 #[wasm_bindgen]
-pub fn generate_mailblock(message: &str, index: i32, total: i32) -> JsValue {
+pub fn generate_mailblock(message: &str, stamp: String, recipient: String) -> JsValue {
     let hash = crypto::encrypt(message);
     let mailblock = Mailblock {
         header: Header {
             title: String::from("mailblock"),
             version: String::from("1.0"),
         },
-        index: index,
-        total: total,
+        stamp: stamp,
+        recipient: recipient,
         hash: hash,
     };
     match JsValue::from_serde(&mailblock) {
