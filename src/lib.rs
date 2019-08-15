@@ -13,14 +13,15 @@ extern crate serde_derive;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 // Mailblock struct for JSON output
-#[derive(Serialize)]
-struct Header {
-    title: String,
-    version: String,
-}
+// #[derive(Serialize)]
+// struct Header {
+//     title: String,
+//     version: String,
+// }
 #[derive(Serialize)]
 struct Mailblock {
-    header: Header,
+    title: String,
+    version: String,
     stamp: String,
     recipient: String,
     hash: String,
@@ -35,10 +36,8 @@ pub fn generate_mailblock(message: &str, stamp: String, recipient: String) -> Js
         _ => hash = crypto::encrypt(message)
     }
     let mailblock = Mailblock {
-        header: Header {
-            title: String::from("mailblock"),
-            version: String::from("1.0"),
-        },
+        title: String::from("mailblock"),
+        version: String::from("1.0"),
         stamp: stamp,
         recipient: recipient,
         hash: hash,

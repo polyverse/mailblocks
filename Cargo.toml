@@ -1,6 +1,6 @@
 [package]
 name = "mailblocks"
-version = "0.1.2"
+version = "0.1.4"
 authors = ["Wesley Florence <jw37g@mac.com>"]
 edition = "2018"
 license = "MIT"
