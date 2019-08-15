@@ -13,11 +13,6 @@ extern crate serde_derive;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 // Mailblock struct for JSON output
-// #[derive(Serialize)]
-// struct Header {
-//     title: String,
-//     version: String,
-// }
 #[derive(Serialize)]
 struct Mailblock {
     title: String,
