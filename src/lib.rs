@@ -20,6 +20,7 @@ struct Mailblock {
     stamp: String,
     recipient: String,
     hash: String,
+    help: String
 }
 
 #[wasm_bindgen]
@@ -36,6 +37,7 @@ pub fn generate_mailblock(message: &str, stamp: String, recipient: String) -> Js
         stamp: stamp,
         recipient: recipient,
         hash: hash,
+        help: String::from("https://polyverse.email")
     };
     match JsValue::from_serde(&mailblock) {
         Ok(json) => json,
